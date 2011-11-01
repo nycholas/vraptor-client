@@ -4,11 +4,7 @@
 
 	<groupId>vraptor-client</groupId>
 	<artifactId>vraptor-client</artifactId>
-<<<<<<< HEAD
-	<version>1.3.2</version>
-=======
 	<version>1.5.1</version>
->>>>>>> 4a2bb1e3f2b3f844c35678ba8ae7fce5422a6277
 	<packaging>jar</packaging>
 
 	<name>vraptor-client</name>
