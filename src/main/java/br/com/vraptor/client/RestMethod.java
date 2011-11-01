@@ -2,16 +2,12 @@ package br.com.vraptor.client;
 
 import java.lang.reflect.Method;
 
-import com.google.common.collect.ImmutableList;
-
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.vraptor.client.params.Parameters;
-
-import com.google.common.collect.ImmutableList;
 
 public class RestMethod {
 
@@ -35,14 +31,6 @@ public class RestMethod {
 			return "";
 		}
 		return clazz.getAnnotation(Path.class).value()[0];
-	}
-	
-	public ImmutableList<String> parametersInfo() {
-		return this.parameters.names();
-	}
-
-	public ImmutableList<String> parametersInfo() {
-		return this.parameters.names();
 	}
 
 	public String invoke(RestClient restClient, Object[] args) throws Exception {

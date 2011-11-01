@@ -80,7 +80,8 @@ public class Parameters {
 	}
 
 	private boolean hasLoadAnnotation(ParameterInfo parameterInfo) {
-		return false;
+		return parameterInfo.hasAnnotation(br.com.caelum.vraptor.util.hibernate.extra.Load.class)
+				|| parameterInfo.hasAnnotation(br.com.caelum.vraptor.util.jpa.extra.Load.class);
 	}
 
 	private List<String> pathParams() {
