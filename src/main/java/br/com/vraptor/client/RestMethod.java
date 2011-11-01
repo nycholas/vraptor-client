@@ -9,6 +9,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.vraptor.client.params.Parameters;
 
+import com.google.common.collect.ImmutableList;
+
 public class RestMethod {
 
 	private String path;
@@ -31,6 +33,10 @@ public class RestMethod {
 			return "";
 		}
 		return clazz.getAnnotation(Path.class).value()[0];
+	}
+
+	public ImmutableList<String> parametersInfo() {
+		return this.parameters.names();
 	}
 
 	public String invoke(RestClient restClient, Object[] args) throws Exception {
