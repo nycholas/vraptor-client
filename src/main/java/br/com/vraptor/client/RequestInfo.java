@@ -17,7 +17,7 @@ class RequestInfo {
 
 	public RequestInfo(String path, Parameters parameters, Object[] args) throws UnsupportedEncodingException {
 		this.params = paramsMap(parameters, args);
-		this.path = UriUtils.removeDoubleSlashes(requestPath(path, params, parameters));
+		this.path = requestPath(path, params, parameters);
 	}
 
 	public String getPath() {
@@ -32,9 +32,7 @@ class RequestInfo {
 		Map<String, Object> map = new HashMap<String, Object>();
 		for (int i = 0; i < parameters.size(); i++) {
 			try {
-				if (args[i] != null) {
-					map.putAll(ParametersSerializer.paramsFor(args[i], parameters.name(i)));
-				}
+				map.putAll(ParametersSerializer.paramsFor(args[i], parameters.name(i)));
 			} catch (Exception e) {
 				throw new IllegalArgumentException("could not obtain params");
 			}
