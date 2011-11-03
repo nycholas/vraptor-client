@@ -28,7 +28,8 @@ public class ParametersSerializer {
 	public static Map<String, Object> paramsFor(Object object, String name) throws IllegalAccessException,
 			InvocationTargetException, NoSuchMethodException {
 		if (object == null) {
-			return Collections.emptyMap();
+			// return Collections.emptyMap();
+			return simpleMapForValue(object, name);
 		}
 		if (isWrapperType(object.getClass()) || isEnum(object)) {
 			return simpleMapForValue(object, name);
@@ -123,5 +124,4 @@ public class ParametersSerializer {
 		return ret;
 	}
 
-	
 }

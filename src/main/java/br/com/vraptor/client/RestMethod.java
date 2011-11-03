@@ -2,14 +2,14 @@ package br.com.vraptor.client;
 
 import java.lang.reflect.Method;
 
-import com.google.common.collect.ImmutableList;
-
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.vraptor.client.params.Parameters;
+
+import com.google.common.collect.ImmutableList;
 
 public class RestMethod {
 
