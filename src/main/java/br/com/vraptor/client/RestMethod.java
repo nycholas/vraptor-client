@@ -2,6 +2,8 @@ package br.com.vraptor.client;
 
 import java.lang.reflect.Method;
 
+import com.google.common.collect.ImmutableList;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
