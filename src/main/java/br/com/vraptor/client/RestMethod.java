@@ -25,6 +25,10 @@ public class RestMethod {
 		return UriUtils.removeDoubleSlashes(basePath + "/" + topLevelPath(method) + "/" + pathFrom(method));
 	}
 
+	public ImmutableList<String> parametersInfo() {
+		return this.parameters.names();
+	}
+
 	private String topLevelPath(Method method) {
 		Class<?> clazz = method.getDeclaringClass();
 		if (!clazz.isAnnotationPresent(Path.class)) {
