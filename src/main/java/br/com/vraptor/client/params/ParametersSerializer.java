@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -116,6 +118,8 @@ public class ParametersSerializer {
 		ret.add(Double.class);
 		ret.add(Void.class);
 		ret.add(String.class);
+		ret.add(BigInteger.class);
+		ret.add(BigDecimal.class);
 		ret.add(int.class);
 		ret.add(long.class);
 		ret.add(double.class);
@@ -123,5 +127,4 @@ public class ParametersSerializer {
 		return ret;
 	}
 
-	
 }
