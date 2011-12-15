@@ -98,7 +98,8 @@ public class ParamsTest {
 
 		Map<String, Object> params = ParametersSerializer.paramsFor(carList, "carList");
 
-		assertFalse(params.containsKey("carList"));
+		assertTrue(params.containsKey("carList"));
+		assertTrue(params.get("carList") == null);
 	}
 
 	@Test
