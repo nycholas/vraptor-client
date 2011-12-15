@@ -129,7 +129,7 @@ public class RequestTest {
 
 		sampleServiceFor(SampleService.class).testWithRegex(null);
 
-		verify(client).get(eq(path + "regex/bla"), anyMap());
+		verify(client).get(eq(path + "regex//bla"), anyMap());
 
 	}
 
