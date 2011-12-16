@@ -77,14 +77,6 @@ public class ParametersSerializer {
 		return object instanceof List;
 	}
 
-	private static boolean isBigInteger(Object object) {
-		return object instanceof BigInteger;
-	}
-
-	private static boolean isBigDecimal(Object object) {
-		return object instanceof BigDecimal;
-	}
-
 	private static Map<String, Object> simpleMapForValue(Object object, String name) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(name, object);
