@@ -29,10 +29,7 @@ public class ParametersSerializer {
 
 	public static Map<String, Object> paramsFor(Object object, String name) throws IllegalAccessException,
 			InvocationTargetException, NoSuchMethodException {
-		if (object == null) {
-			return simpleMapForValue(object, name);
-		}
-		if (isWrapperType(object.getClass()) || isEnum(object)) {
+		if (object == null || isWrapperType(object.getClass()) || isEnum(object)) {
 			return simpleMapForValue(object, name);
 		}
 		if (isList(object)) {
@@ -78,6 +75,14 @@ public class ParametersSerializer {
 
 	private static boolean isList(Object object) {
 		return object instanceof List;
+	}
+
+	private static boolean isBigInteger(Object object) {
+		return object instanceof BigInteger;
+	}
+
+	private static boolean isBigDecimal(Object object) {
+		return object instanceof BigDecimal;
 	}
 
 	private static Map<String, Object> simpleMapForValue(Object object, String name) {
