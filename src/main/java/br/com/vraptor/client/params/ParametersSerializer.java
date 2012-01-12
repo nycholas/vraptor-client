@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 import net.vidageek.mirror.dsl.Mirror;
 import net.vidageek.mirror.list.dsl.Matcher;
@@ -120,6 +121,7 @@ public class ParametersSerializer {
 		ret.add(String.class);
 		ret.add(BigInteger.class);
 		ret.add(BigDecimal.class);
+        ret.add(Date.class);
 		ret.add(int.class);
 		ret.add(long.class);
 		ret.add(double.class);
