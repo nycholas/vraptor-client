@@ -118,7 +118,7 @@ public class ParametersSerializer {
 		ret.add(String.class);
 		ret.add(BigInteger.class);
 		ret.add(BigDecimal.class);
-        ret.add(Data.class);
+        ret.add(Date.class);
 		ret.add(int.class);
 		ret.add(long.class);
 		ret.add(double.class);
