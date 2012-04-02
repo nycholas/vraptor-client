@@ -1,4 +1,6 @@
-h2. WHY?
+## WHY?
+
+![Build Status](https://secure.travis-ci.org/andrerigon/vraptor-client.png)
 
 when writing a java client app for rest based service, you must have duplication.
 You need to duplicate urls, paths, parameters type and order.
@@ -9,8 +11,7 @@ interface that you use in the server's implementation, building correctly a requ
 
 For example, imagine a vraptor controller:
 
-<pre>
-<code>
+```java
 @Resource
 public class ClientController implements Clients{
 
@@ -21,25 +22,21 @@ public class ClientController implements Clients{
 	}
 
 }
-</code>
-</pre>
+```
 
 it implements Clients interface:
 
-<pre>
-<code>
+```java
 public interface Clients {
 
    @Post("save")
    String save(@Named("client") Client client);
 }
-</code>
-</pre>
+```
 
 int the client, you just have to inject the proxy implementation and use the interface:
 
-<pre>
-<code>
+```java
 public class ClientTest {
 
     @Autowired
@@ -54,10 +51,9 @@ public class ClientTest {
 	}
 
 }
-</code>
-</pre>
+```
 
-h2. INSTALLATION
+## INSTALL
 
 <pre>
 <code>git clone git://github.com/andrerigon/vraptor-client.git
@@ -65,11 +61,12 @@ cd vraptor-client
 mvn install</code>
 </pre>
 
-h2. USAGE
+## USAGE
 
 vraptor does not use interfaces to obtain route information by default.
 To do that, you need to let vraptor use interfaces to obtain controller's information, using
 a customized route parser.
+
 There's an implementation at: https://gist.github.com/1149159
 
 Also, the controller's interfaces will need to use @Named annotation to indicate parameters name. Without that, paranamer won't be able to figure out params names.
@@ -77,39 +74,33 @@ Also, the controller's interfaces will need to use @Named annotation to indicate
 
 The proxy handler classe is:
 
-<pre>
-<code>
+```java
 br.com.vraptor.client.handler.RestProxyHandler
-</code>
-</pre>
+```
 
 it needs three constructor arguments:
 
-* a class implementing *br.com.vraptor.client.RestClient* - it will be in charge of doing the http requests
+* a class implementing **br.com.vraptor.client.RestClient** - it will be in charge of doing the http requests
 * the base path for the request
-* a class implementing *br.com.vraptor.client.ResultParser* - it will parse the response and deal with exceptions
+* a class implementing **br.com.vraptor.client.ResultParser** - it will parse the response and deal with exceptions
 
 to create a proxy, you'll need to do:
 
-<pre>
-<code>
+```java
 Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class<?>[] { clazz },
 				new RestProxyHandler(restClient, path, parser))
-</code>
-</pre>
+```
 
 if you use spring, there is a factory bean to create the services for you
 
-<pre>
-<code>
+```xml
 <bean name="factory" class=" br.com.vraptor.client.spring.SpringRestFactory" />
-</code>
-</pre>
+```
 
 it will need some beans:
 
-* a class implementing: *br.com.vraptor.client.RestClient* - to make the http requests.
+* a class implementing: **br.com.vraptor.client.RestClient** - to make the http requests.
 * the base path for the request.
-* a class implementing: *br.com.vraptor.client.classprovider.RestClassesProvider* - it will inform which interfaces will be intercepted. If you want, you can use a use ClasspathScannerRestClassesProvider, and provide a base package to scan. Any interfaces will be loaded.
-* and finally, a class implementing: *br.com.vraptor.client.ResultParser* - it will parse the result from the request.
+* a class implementing: **br.com.vraptor.client.classprovider.RestClassesProvider** - it will inform which interfaces will be intercepted. If you want, you can use a use ClasspathScannerRestClassesProvider, and provide a base package to scan. Any interfaces will be loaded.
+* and finally, a class implementing: **br.com.vraptor.client.ResultParser** - it will parse the result from the request.
 
