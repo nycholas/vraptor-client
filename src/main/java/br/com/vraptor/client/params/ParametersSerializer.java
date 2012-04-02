@@ -7,11 +7,11 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Date;
 
 import net.vidageek.mirror.dsl.Mirror;
 import net.vidageek.mirror.list.dsl.Matcher;
@@ -30,10 +30,7 @@ public class ParametersSerializer {
 
 	public static Map<String, Object> paramsFor(Object object, String name) throws IllegalAccessException,
 			InvocationTargetException, NoSuchMethodException {
-		if (object == null) {
-			return simpleMapForValue(object, name);
-		}
-		if (isWrapperType(object.getClass()) || isEnum(object)) {
+		if (object == null || isWrapperType(object.getClass()) || isEnum(object)) {
 			return simpleMapForValue(object, name);
 		}
 		if (isList(object)) {
@@ -121,7 +118,7 @@ public class ParametersSerializer {
 		ret.add(String.class);
 		ret.add(BigInteger.class);
 		ret.add(BigDecimal.class);
-        ret.add(Date.class);
+		ret.add(Date.class);
 		ret.add(int.class);
 		ret.add(long.class);
 		ret.add(double.class);
