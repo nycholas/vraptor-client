@@ -23,7 +23,7 @@ public class ClasspathScannerRestClassesProvider implements RestClassesProvider 
 	}
 
 	private List<String> extractPackagesToScan(String packageToScan) {
-		List<String> packages = new ArrayList<>();
+		List<String> packages = new ArrayList<String>();
 		if (packageToScan.contains(ClasspathScannerRestClassesProvider.SEP)) {
 			packages = Arrays.asList(packageToScan.split(ClasspathScannerRestClassesProvider.SEP));
 		} else {
