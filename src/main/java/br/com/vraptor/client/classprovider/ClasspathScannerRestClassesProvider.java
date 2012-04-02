@@ -14,12 +14,12 @@ public class ClasspathScannerRestClassesProvider implements RestClassesProvider 
 
 	private List<String> packagesToScan;
 
-	@Autowired
+	@Autowired(required = false)
 	public ClasspathScannerRestClassesProvider(String packageToScan) {
 		this.packagesToScan = Arrays.asList(new String[] { packageToScan });
 	}
 
-	@Autowired
+	@Autowired(required = false)
 	public ClasspathScannerRestClassesProvider(List<String> packagesToScan) {
 		this.packagesToScan = packagesToScan;
 	}
