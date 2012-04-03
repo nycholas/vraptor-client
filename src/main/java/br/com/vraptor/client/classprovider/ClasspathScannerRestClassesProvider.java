@@ -1,5 +1,6 @@
 package br.com.vraptor.client.classprovider;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -9,25 +10,41 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.util.StringUtils;
 
 public class ClasspathScannerRestClassesProvider implements RestClassesProvider {
 
+	final static private String SEP = ",";
 	private List<String> packagesToScan;
 
 	@Autowired
 	public ClasspathScannerRestClassesProvider(String packageToScan) {
-		this.packagesToScan = Arrays.asList(new String[] { packageToScan });
+		this.packagesToScan = this.extractPackagesToScan(packageToScan);
 	}
 
-	@Autowired
-	public ClasspathScannerRestClassesProvider(List<String> packagesToScan) {
-		this.packagesToScan = packagesToScan;
+	private List<String> extractPackagesToScan(String packageToScan) {
+		List<String> packages = new ArrayList<String>();
+		if (packageToScan.contains(ClasspathScannerRestClassesProvider.SEP)) {
+			packages = Arrays.asList(packageToScan.split(ClasspathScannerRestClassesProvider.SEP));
+		} else {
+			packages = Arrays.asList(new String[] { packageToScan });
+		}
+		return this.filterPackagesToScan(packages);
+	}
+
+	private List<String> filterPackagesToScan(List<String> packages) {
+		List<String> packs = new ArrayList<String>();
+		for (String pack : packages) {
+			if (StringUtils.hasLength(StringUtils.trimAllWhitespace(pack))) {
+				packs.add(pack);
+			}
+		}
+		return packs;
 	}
 
 	@Override
 	public Set<Class<?>> classes() {
 		Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
-
 		for (BeanDefinition component : this.scanPackages(this.packagesToScan)) {
 			classes.add(classFrom(component));
 		}
