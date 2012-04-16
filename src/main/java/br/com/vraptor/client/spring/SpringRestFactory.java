@@ -17,16 +17,12 @@ import br.com.vraptor.client.handler.RestProxyHandler;
 @Component
 public class SpringRestFactory implements ApplicationContextAware {
 
-	@Autowired
 	RestClient restClient;
 
-	@Autowired
 	String path;
 
-	@Autowired
 	RestClassesProvider provider;
 
-	@Autowired
 	ResultParser parser;
 
 	@Autowired
